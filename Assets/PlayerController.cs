@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
                 movedPos.x += Input.GetAxis("Horizontal") * MoveSpeed * Time.deltaTime;
                 movedPos.y += Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime;
                 movedPos = Vector2.ClampMagnitude(movedPos, MoveRenge);
-                var worldMovePos = Matrix4x4.Rotate(transform.rotation).MultiplyVector(movedPos);
+                Vector3 worldMovePos = Matrix4x4.Rotate(transform.rotation).MultiplyVector(movedPos);
 
                 //ルート上の位置の上下左右の移動量を加えている
                 transform.position = basePosition + worldMovePos;
