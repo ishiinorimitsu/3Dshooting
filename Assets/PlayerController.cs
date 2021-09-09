@@ -71,10 +71,8 @@ public class PlayerController : MonoBehaviour
             Life -= 10;
             LifeGage.fillAmount = Life / _InitialLife;
 
-            Debug.Log("Hit!");
-
             other.gameObject.SetActive(false);
-            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 
