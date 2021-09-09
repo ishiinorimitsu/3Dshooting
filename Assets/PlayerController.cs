@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class PlayerController : MonoBehaviour
 
     [Range(0, 200)]
     public float Speed = 10f;
+
+    public float _InitialLife = 100;　//マックスのHP
+
+    public float Life = 100;  //現在のHP
+
+    public Image LifeGage;
 
     bool _isHitRootPoint;
 
@@ -58,6 +65,16 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             _isHitRootPoint = true;
+        }
+        else if(other.gameObject.tag == "Enemy")
+        {
+            Life -= 10;
+            LifeGage.fillAmount = Life / _InitialLife;
+
+            Debug.Log("Hit!");
+
+            other.gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
