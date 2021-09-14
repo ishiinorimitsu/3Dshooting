@@ -30,4 +30,11 @@ public class Enemy : MonoBehaviour
             transform.position += vec.normalized * speed * Time.deltaTime;
         }
     }
+
+    private void OnMouseUpAsButton()
+    {
+        Debug.Log("aaaaa");
+        _player.ShotBullet(transform.position);
+        Debug.Log("Š®—¹1");
+    }
 }

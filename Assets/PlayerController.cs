@@ -76,14 +76,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public Bullet BulletPrefab;
+    public void ShotBullet(Vector3 targetPos)
+    {
+        Bullet bullet = Object.Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+        bullet.Init(transform.position, targetPos);
+        Debug.Log("Š®—¹2");
+    }
+
     void Start()
     {
         StartCoroutine(Move());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
