@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     public float speed = 10f;
     public float DeadSecond = 10f;
 
+    public float Life = 10;
+
     float _time;
     PlayerController _player;
     void Start()
@@ -36,5 +38,18 @@ public class Enemy : MonoBehaviour
         Debug.Log("aaaaa");
         _player.ShotBullet(transform.position);
         Debug.Log("Š®—¹1");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Bullet")
+        {
+            Life -= 10;
+            Destroy(other.gameObject);
+            if(Life <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
