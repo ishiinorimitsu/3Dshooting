@@ -90,9 +90,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject.tag == "BackGround")
+        if(collision.gameObject.tag == "BackGround")
         {
             Life -= 1;
             LifeGage.fillAmount = Life / _InitialLife;
