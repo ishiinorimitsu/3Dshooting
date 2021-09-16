@@ -73,6 +73,38 @@ public class PlayerController : MonoBehaviour
 
             other.gameObject.SetActive(false);
             Destroy(other.gameObject);
+
+            if(Life <= 0)
+            {
+                Camera.main.transform.SetParent(null);
+                gameObject.SetActive(true);
+                SceneManager sceneManager = FindObjectOfType<SceneManager>();
+                sceneManager.ShowGameOver();
+            }
+        }
+        else if(other.gameObject.tag == "ClearRoutePoint")
+        {
+            SceneManager sceneManager = FindObjectOfType<SceneManager>();
+            sceneManager.ShowGameClear();
+            _isHitRootPoint = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "BackGround")
+        {
+            Life -= 1;
+            LifeGage.fillAmount = Life / _InitialLife;
+            Debug.Log("ohno!");
+
+            if (Life <= 0)
+            {
+                Camera.main.transform.SetParent(null);
+                gameObject.SetActive(true);
+                SceneManager sceneManager = FindObjectOfType<SceneManager>();
+                sceneManager.ShowGameOver();
+            }
         }
     }
 
